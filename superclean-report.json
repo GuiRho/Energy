@@ -2,9 +2,55 @@
   "repo": "https://github.com/GuiRho/Energy",
   "target": "repos\\energy",
   "files_before": 6,
-  "files_after": 6,
+  "files_after": 14,
   "changes": [
     "  Normalised: P4\\My_function_p4.py",
     "  Normalised: P4\\My_function_p4_explo.py"
-  ]
+  ],
+  "restructured_modules": [
+    "src/preprocessing/__init__.py",
+    "src/preprocessing/data_loading.py",
+    "src/preprocessing/cleaning.py",
+    "src/preprocessing/encoding.py",
+    "src/preprocessing/outliers.py",
+    "src/features/__init__.py",
+    "src/features/transformations.py",
+    "src/features/correlation.py",
+    "src/models/__init__.py",
+    "src/models/overview.py",
+    "src/models/pca_scale.py",
+    "src/models/catboost_pca.py",
+    "src/models/model_centric.py",
+    "src/analysis/__init__.py",
+    "src/analysis/descriptive.py",
+    "src/analysis/stats.py",
+    "src/analysis/visualization.py"
+  ],
+  "test_files": [
+    "tests/conftest.py",
+    "tests/test_preprocessing.py",
+    "tests/test_features.py",
+    "tests/test_models.py"
+  ],
+  "docs_created": [
+    "docs/README.md",
+    "docs/architecture.md",
+    "docs/cleaning_report.md"
+  ],
+  "config_files": [
+    "requirements.txt",
+    ".gitignore",
+    ".env.example"
+  ],
+  "improvements": {
+    "functions_before": 98,
+    "functions_after": 71,
+    "duplicate_imports_removed": true,
+    "type_hints_added": true,
+    "print_to_logging": true,
+    "french_to_english_naming": true,
+    "immutable_patterns": true,
+    "mutable_defaults_fixed": true,
+    "hardcoded_paths_removed": true
+  }
 }
