@@ -9,7 +9,7 @@ from sklearn.preprocessing import OneHotEncoder
 
 
 "Librairies : "
-import pandas as pd 
+import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
@@ -79,9 +79,9 @@ warnings.filterwarnings('ignore', category=UserWarning)
 
 
 def type_definition(df):
-    
+
     features = df.columns
-    df_colnumb = df.shape[1] 
+    df_colnumb = df.shape[1]
     num_col = []
     cat_col = []
 
@@ -154,10 +154,10 @@ def overview_models_for_df(df):
 
         # Boosting (often perform well)
         'AdaBoost': AdaBoostRegressor(n_estimators=100, learning_rate=1.0, random_state=RANDOM_STATE),
-        'GradientBoosting': GradientBoostingRegressor(n_estimators=100, learning_rate=0.1, max_depth=3, random_state=RANDOM_STATE), 
+        'GradientBoosting': GradientBoostingRegressor(n_estimators=100, learning_rate=0.1, max_depth=3, random_state=RANDOM_STATE),
         'XGBoost': xgb.XGBRegressor(n_estimators=100, learning_rate=0.15, max_depth=3, random_state=RANDOM_STATE, n_jobs=-1, objective='reg:squarederror'),
-        'LightGBM': lgb.LGBMRegressor(n_estimators=100, learning_rate=0.15, max_depth=-1, random_state=RANDOM_STATE, n_jobs=-1, verbosity=-1), 
-        'CatBoost': cb.CatBoostRegressor(iterations=100, learning_rate=0.15, depth=6, random_state=RANDOM_STATE, verbose=0, thread_count=-1) 
+        'LightGBM': lgb.LGBMRegressor(n_estimators=100, learning_rate=0.15, max_depth=-1, random_state=RANDOM_STATE, n_jobs=-1, verbosity=-1),
+        'CatBoost': cb.CatBoostRegressor(iterations=100, learning_rate=0.15, depth=6, random_state=RANDOM_STATE, verbose=0, thread_count=-1)
     }
 
     # --- 2. Provide Your Preprocessed Data Here ---
@@ -323,10 +323,10 @@ def overview_models_target(df, target):
 
         # Boosting (often perform well)
         'AdaBoost': AdaBoostRegressor(n_estimators=100, learning_rate=1.0, random_state=RANDOM_STATE),
-        'GradientBoosting': GradientBoostingRegressor(n_estimators=100, learning_rate=0.1, max_depth=3, random_state=RANDOM_STATE), 
+        'GradientBoosting': GradientBoostingRegressor(n_estimators=100, learning_rate=0.1, max_depth=3, random_state=RANDOM_STATE),
         'XGBoost': xgb.XGBRegressor(n_estimators=100, learning_rate=0.15, max_depth=3, random_state=RANDOM_STATE, n_jobs=-1, objective='reg:squarederror'),
-        'LightGBM': lgb.LGBMRegressor(n_estimators=100, learning_rate=0.15, max_depth=-1, random_state=RANDOM_STATE, n_jobs=-1, verbosity=-1), 
-        'CatBoost': cb.CatBoostRegressor(iterations=100, learning_rate=0.15, depth=6, random_state=RANDOM_STATE, verbose=0, thread_count=-1) 
+        'LightGBM': lgb.LGBMRegressor(n_estimators=100, learning_rate=0.15, max_depth=-1, random_state=RANDOM_STATE, n_jobs=-1, verbosity=-1),
+        'CatBoost': cb.CatBoostRegressor(iterations=100, learning_rate=0.15, depth=6, random_state=RANDOM_STATE, verbose=0, thread_count=-1)
     }
 
     # --- 2. Provide Your Preprocessed Data Here ---
@@ -5719,7 +5719,7 @@ def tune_catboost(X_train: pd.DataFrame, # Keep as DataFrame for potential cat f
                   # If you decide to pass categorical features directly to CatBoost:
                   # categorical_features_indices='auto' # Or a list of indices
                   ):
-    
+
     print(f"\n--- Starting Randomized Search (Pipeline: Scale={apply_scaling}, PCA={apply_pca}) ---")
     print(f"   (n_iter={n_iter}, cv={cv}, scoring='{scoring}')")
     search_start_time = time.time()
@@ -7041,8 +7041,3 @@ def orchestrate_catboost_grid_tuning(
     print(f"Total execution time: {pipeline_end_time - pipeline_start_time:.2f} seconds")
 
     return best_pipeline, test_scores
-
-
-
-
-

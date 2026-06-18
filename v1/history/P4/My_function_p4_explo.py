@@ -7,7 +7,7 @@ from sklearn.preprocessing import OneHotEncoder
 
 
 "Librairies : "
-import pandas as pd 
+import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
@@ -81,9 +81,9 @@ warnings.filterwarnings('ignore', category=UserWarning)
 "Datatype"
 
 def type_definition(df):
-    
+
     features = df.columns
-    df_colnumb = df.shape[1] 
+    df_colnumb = df.shape[1]
     num_col = []
     cat_col = []
 
@@ -109,7 +109,7 @@ def get_modalities(df):
         else:
             rank.append((feat, df[feat].nunique()))
 
-    info_from_unique_column = tuple(info_from_unique_column)    
+    info_from_unique_column = tuple(info_from_unique_column)
     rank = sorted(rank, key=lambda x:x[1])
 
     print(f'Il y a {len(rank)} colonnes avec au moins 2 valeurs, voici leurs nombres de modalités respectives')
@@ -121,14 +121,14 @@ def get_modalities(df):
 
 def drop_low_modalities(df, low_info_col):
     print(f"Before drop : {df.shape}")
-    non_usefull_feature_gen = (low_info_col[i][0] for i in range(len(low_info_col))) 
+    non_usefull_feature_gen = (low_info_col[i][0] for i in range(len(low_info_col)))
 
     for feat in list(non_usefull_feature_gen):
         df=df.drop(columns=feat, axis=1)
 
     print(f"After drop : {df.shape}")
     return df
-    
+
 
 "Chaines de caractères"
 
@@ -144,7 +144,7 @@ def clean_strings(df: pd.DataFrame, cat_col) -> pd.DataFrame:
 
     for col in df.columns :
         if col in df[cat_col]:  # Check if the col exists in the DataFrame
-            df[col] = df[col].astype(str).apply(lambda x: ','.join([s.strip() for s in x.split(',')]).lower()) 
+            df[col] = df[col].astype(str).apply(lambda x: ','.join([s.strip() for s in x.split(',')]).lower())
             df[col] = df[col].str.replace(r'\(.*?\)', '', regex=True)
             df[col] = df[col].str.strip()
     return df
@@ -179,7 +179,7 @@ def keep_unique(df, pkey, keep='first'):
 def get_duplicate(df, pkey, keep='first'):
     num_duplicates = df.duplicated(subset=pkey, keep=keep).sum()
     print(f"Number of duplicate rows based on primary key {pkey}: {num_duplicates}")
-    return 
+    return
 
 
 
@@ -200,8 +200,8 @@ def plot_na_row(distrib_na_row=None, totalna_row=None):
         print("Error: totalna_row is not defined. Please run check_na_values_rows() first.")
         return
 
-    plt.figure(figsize=(14, 6)) 
-    bars = plt.bar(distrib_na_row.index, distrib_na_row.values, color='blue')  
+    plt.figure(figsize=(14, 6))
+    bars = plt.bar(distrib_na_row.index, distrib_na_row.values, color='blue')
     plt.xlabel("Number of NaN Values per Row")
     plt.ylabel("Number of Rows")
     plt.title("Distribution of NA Values per Row")
@@ -236,7 +236,7 @@ def conditional_fill_na(df, rules):
 # 3 - Outlier
 
 def outlier_stat(df_copy, num_col, cat_col):
-    
+
     # Prepare the output DataFrame
     output_df = pd.DataFrame(index=df_copy.columns)
     output_df.index.name = "feature"
@@ -379,7 +379,7 @@ def graphebarre(dataset: pd.DataFrame) -> None:
         plt.show()
 
 def histogramme(dataset: pd.DataFrame) -> None:
-    
+
     numerical_features = dataset.select_dtypes(include=np.number).columns.tolist()
 
     if not numerical_features:
@@ -453,7 +453,7 @@ def univariate_analysis(df):
 
 
 def print_top_correlations(dataset: pd.DataFrame, n: int = 5, threshold: float = 0.85) -> list:
-    
+
     numerical_features = dataset.select_dtypes(include=np.number).columns.tolist()
 
     if not numerical_features:
@@ -491,16 +491,16 @@ from collections import Counter
 def count_string_occurrences(data):
     # Initialize a counter
     counter = Counter()
-    
+
     # Determine the maximum length of the tuples
     max_length = max(len(item) for item in data)
-    
+
     # Iterate over each tuple in the data
     for item in data:
         # Iterate over the first two items in each tuple
         for i in range(min(2, len(item))):
             counter[item[i]] += 1
-    
+
     return counter
 
 
@@ -774,7 +774,7 @@ def _calculate_correlation(
     except Exception:
         # Catch any unexpected errors during correlation calculation
         return np.nan
-    
+
 def _apply_power_transformation(series: pd.Series, power: float) -> pd.Series:
     """Applies power transformation to a series, handling non-positive values."""
     if not isinstance(series, pd.Series): return pd.Series([np.nan] * len(series)) # robustness
@@ -857,10 +857,10 @@ TRANSFORMATIONS = {
     'power_5_00': lambda s: _apply_power_transformation(s, 5), #changed
     'power_8_00': lambda s: _apply_power_transformation(s, 8), #added
 
-    #'reciprocal': lambda s: _apply_power_transformation(s, -1), 
+    #'reciprocal': lambda s: _apply_power_transformation(s, -1),
     #'reciprocal_2': lambda s: _apply_power_transformation(s, -2),
     #'reciprocal_3': lambda s: _apply_power_transformation(s, -3),
-    
+
     # Logs
     'log2': lambda s: _apply_log_transformation(s, np.log2),
     'log10': lambda s: _apply_log_transformation(s, np.log10),
@@ -1131,7 +1131,7 @@ def bin_categories(df, features=[], cutoff = 0.007, replace_with='other_grouped'
 # 6 - Preprocessing
 
 def special_encoding(df: pd.DataFrame) -> pd.DataFrame:
-    
+
     col_special_encoding = ["LargestPropertyUseType", "SecondLargestPropertyUseType", "ThirdLargestPropertyUseType"]
     sufix_name = "%_GFA"
 
@@ -1193,7 +1193,7 @@ def sum_special_encoding_columns(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def onehot_encode_column(df, column_name):
- 
+
     # 1. Create a OneHotEncoder instance.  handle_unknown='ignore' prevents errors if new categories appear later
     encoder = OneHotEncoder(handle_unknown='ignore', sparse_output=False) # sparse_output=False returns a numpy array, not a sparse matrix
 
@@ -1215,4 +1215,3 @@ def onehot_encode_column(df, column_name):
     df.drop(columns=[column_name], inplace=True)
 
     return df
-

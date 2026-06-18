@@ -1,0 +1,10 @@
+{
+  "repo": "https://github.com/GuiRho/Energy",
+  "target": "repos\\energy",
+  "files_before": 6,
+  "files_after": 6,
+  "changes": [
+    "  Normalised: P4\\My_function_p4.py",
+    "  Normalised: P4\\My_function_p4_explo.py"
+  ]
+}
